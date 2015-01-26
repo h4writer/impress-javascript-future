@@ -4,12 +4,13 @@
         <title>The Future of JavaScript</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <link href="style.css" rel="stylesheet" />
+        <link rel="stylesheet" href="highlight-styles/googlecode.css">
     </head>
     <body>
 
         <div id="impress">
             
-            <div class="step" data-x="0" data-y="0">
+            <div class="step" data-x="800" data-y="-400">
                 <h1>The future of Javascript.<h1/>
                 <h2>EcmaScript 6 and even more</h2>
             </div>
@@ -24,27 +25,218 @@
                 <h1>Benjamin Bouvier</h1>
             </div>
             
+<!--
             <div class="step" data-x="1600" data-y="0" data-scale="0.5">
                 ...
             </div>
+-->
             
-            <div class="step" data-x="1600" data-y="0" data-scale="0.7">
+            <div id='es6-list' class="step" data-x="1500" data-y="320" data-scale="0.7">
                 <h1>EcmaScript 6.0</h1>
+
+                <ul>
+                <li><h2>ES6: Generators</h2></li>
+                <li><h2>ES6: Classes</h2></li>
+                <li><h2>ES6: Arrow functions</h2></li>
+                <li><h2>ES6: Deconstruring</h2></li>
+                <li><h2>ES6: Modules</h2></li>
+                <li><h2>ES6: Symbols</h2></li>
+                <li><h2>ES6: Promises</h2></li>
+                </ul>
             </div>
             
-            <div class="step" data-x="1600" data-y="200" data-scale="0.5">
+            <div class="step" data-x="1305" data-y="90" data-scale="0.05" data-rotate="-90">
                 <h1>ES6: Generators</h1>
+                <hr />
+
+                <p>PLACEHOLDER: With ES6 generators, we have a different kind of function,
+                   which may be paused in the middle, one or many times,
+                   and resumed later, allowing other code to run during these
+                   paused periods.</p>
+
+                <img src='' height='250px' width='700px'/>
+
+                <p>PLACEHOLDER: A generator generates values until no values are available anymore</p>
+
             </div>
 
-            <div class="step" data-x="1600" data-y="400" data-scale="0.5">
-                <h1>ES6: class</h1>
+            <div class="step" data-x="1330" data-y="90" data-scale="0.05" data-rotate="-90">
+                <h2>Syntax</h2>
+                <ul>
+                    <li> * Generator function</li>
+                    <li> * Yield statement</li>
+                </ul>
+
+<pre><code class="javascript">function *foo() {
+    // ...
+    yield "bar1";
+    // ...
+    yield "bar2";
+    // ...
+}</code></pre>
+
+            </div>
+            <div class="step usage" data-x="1350" data-y="90" data-scale="0.05" data-rotate="-90">
+            <h2>Usage</h2>
+
+            </div>
+            <div class="step example" data-x="1380" data-y="90" data-scale="0.05" data-rotate="-90">
+                <h3>Example 1: Python-like range</h3>
+<pre><code class="javascript">function *range(start, end) {
+    while (start != end) {
+        yield start;
+        start++;
+    }
+}</code></pre>
+<h4>Usage</h4>
+<pre><code class="javascript">for (let i of range(0, 10)) {
+    console.log(i);
+}</code></pre>
+<h4>Result</h4>
+<pre><code class="javascript">> 0
+> 1
+> 2
+> 3
+> 4
+> 5
+> 6
+> 7
+> 8
+> 9
+</code></pre>
+
+            </div>
+            <div class="step example" data-x="1420" data-y="90" data-scale="0.05" data-rotate="-90">
+                <h3>Example 2: Fibonacci</h3>
+<pre><code class="javascript">function *fibonacci() {
+    var prev = 0, cur = 1;
+    while (true) {
+        let sum = cur + prev;
+        yield sum;
+        prev = cur
+        cur = sum
+    }
+}</code></pre>
+
+<h4>Usage</h4>
+<pre><code class="javascript">for (let n of fibonacci) {
+    if (n > 1000)
+        break;
+    console.log(n);
+}</code></pre>
+
+<h4>Result</h4>
+<pre><code class="javascript">> 0
+> 1
+> 1
+> 2
+> 3
+> 5
+> 8
+...
+</code></pre>
             </div>
 
-            <div class="step" data-x="1600" data-y="600" data-scale="0.5">
-                <h1>ES6: arrow functions</h1>
+            <div class="step" data-x="1600" data-y="600" data-scale="0.1">
+                <h1>ES6: Classes</h1>
+
+<pre><code class="javascript">PLACEHOLDER
+class SkinnedMesh extends THREE.Mesh {
+  constructor(geometry, materials) {
+    super(geometry, materials);
+
+    this.idMatrix = SkinnedMesh.defaultMatrix();
+    this.bones = [];
+    this.boneMatrices = [];
+    //...
+  }
+  update(camera) {
+    //...
+    super.update();
+  }
+  static defaultMatrix() {
+    return new THREE.Matrix4();
+  }
+}</code></pre>
             </div>
+
+            <div class="step" data-x="1600" data-y="800" data-scale="0.1">
+                <h1>ES6: Arrow functions</h1>
+<pre><code class="javascript">PLACEHOLDER
+// Expression bodies
+var odds = evens.map(v => v + 1);
+var nums = evens.map((v, i) => v + i);
+
+// Statement bodies
+nums.forEach(v => {
+  if (v % 5 === 0)
+    fives.push(v);
+});
+
+// Lexical this
+var bob = {
+  _name: "Bob",
+  _friends: [],
+  printFriends() {
+    this._friends.forEach(f =>
+      console.log(this._name + " knows " + f));
+  }
+}
+</code></pre>
+            </div>
+
+            <div class="step" data-x="1600" data-y="390" data-scale="0.1">
+                <h1>ES6: Destructuring</h1>
+<pre><code class="javascript">PLACEHOLDER
+// list matching
+var [a, , b] = [1,2,3];
+
+// object matching
+var { op: a, lhs: { op: b }, rhs: c }
+       = getASTNode()
+
+// object matching shorthand
+// binds `op`, `lhs` and `rhs` in scope
+var {op, lhs, rhs} = getASTNode()
+
+// Can be used in parameter position
+function g({name: x}) {
+  console.log(x);
+}
+g({name: 5})
+
+// Fail-soft destructuring
+var [a] = [];
+a === undefined;
+
+// Fail-soft destructuring with defaults
+var [a = 1] = [];
+a === 1;
+</code></pre>
+            </div>
+
+            <div class="step" data-x="1600" data-y="500" data-scale="0.1">
+                <h1>ES6: Modules</h1>
+            </div>
+
+            <div class="step" data-x="1600" data-y="600" data-scale="0.1">
+                <h1>ES6: Symbols</h1>
+            </div>
+
+            <div class="step" data-x="1600" data-y="700" data-scale="0.1">
+                <h1>ES6: Promises</h1>
+            </div>
+
+
+            <div id="overview" class="step" data-x="1000" data-y="400" data-scale="2">
+            </div>
+
             
         </div>
+
+        <script src="highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
         <script type="text/javascript" src="impress.js"></script>
         <!--
             call `impress().init()` function to initialize impress.js presentation.

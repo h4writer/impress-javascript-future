@@ -105,3 +105,11 @@ h4 {
 .step {
     width: 800px;
 }
+
+#es6-list ul {
+    margin-left: 100px;
+}
+#es6-list ul li {
+    margin-top: 100px;
+    margin-bottom: 100px;
+} 
