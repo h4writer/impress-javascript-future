@@ -3,15 +3,15 @@
     <head>
         <title>The Future of JavaScript</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-        <link href="style.css" rel="stylesheet" />
         <link rel="stylesheet" href="highlight-styles/googlecode.css">
+        <link href="style.css" rel="stylesheet" />
     </head>
     <body>
 
         <div id="impress">
             
             <div id='title'>
-                <h1>The future of Javascript.<h1/>
+                <h1>The future of Javascript.</h1>
                 <h2>EcmaScript 6 and even more</h2>
             </div>
 
@@ -143,6 +143,36 @@
             <div class="step" data-x="1305" data-y="180" data-scale="0.05" data-rotate="-90">
                 <h1>ES6: Classes</h1>
                 <hr />
+                <br />&nbsp;<br />
+                <br />&nbsp;<br />
+                <img src="img/classes-in-js.png" /> 
+                <br />&nbsp;<br />
+                <img src="img/inheritance-in-js.png" />
+                <br />&nbsp;<br />
+                <img src="img/extend-in-js.png" />
+            </div>
+
+            <div class="step" data-x="1345" data-y="180" data-scale="0.05" data-rotate="-90">
+
+<h2 class='blue bold center'>Prototype based !!</h2>
+<pre><code class="javascript">function PrototypeClass() {
+    this.property = "";
+    this.method = function() { }
+}
+PrototypeClass.prototype.anotherMethod = function() { }
+var instance = new PrototypeClass();
+</code></pre>
+                <div class='balloon' style='width:450px; position:absolute; left:-100px;'>
+                    <p style='padding-top:125px'>Why can't we use classes. I know classes.</p>
+                    <img src="img/balloon.png" class='flip'/>
+                </div>
+                <div class='balloon' style='width:300px; position:relative; left:550px;'>
+                    <p>What is this?</p>
+                    <img src="img/balloon.png" class='rotate-180'/>
+                </div>
+            </div>
+
+            <div class="step" data-x="1385" data-y="180" data-scale="0.05" data-rotate="-90">
 
 <pre><code class="javascript">PLACEHOLDER
 class SkinnedMesh extends THREE.Mesh {
@@ -167,70 +197,215 @@ class SkinnedMesh extends THREE.Mesh {
             <div class="step" data-x="1305" data-y="255" data-scale="0.05" data-rotate="-90">
                 <h1>ES6: Arrow functions</h1>
                 <hr />
+            </div>
 
-<pre><code class="javascript">PLACEHOLDER
-// Expression bodies
-var odds = evens.map(v => v + 1);
-var nums = evens.map((v, i) => v + i);
+            <div class="step" data-x="1330" data-y="255" data-scale="0.05" data-rotate="-90">
+                <h2>Problem: |this| is dynamic scoped</h2>
+<pre><code class="javascript">function Archer() {
+    this.arrows = 100;
 
-// Statement bodies
-nums.forEach(v => {
-  if (v % 5 === 0)
-    fives.push(v);
-});
-
-// Lexical this
-var bob = {
-  _name: "Bob",
-  _friends: [],
-  printFriends() {
-    this._friends.forEach(f =>
-      console.log(this._name + " knows " + f));
-  }
+    setInterval(function shoot() {
+        this.arrows--;
+    }, 5 * 1000);
 }
+
+var a1 = new Archer();</code></pre>
+            </div>
+
+            <div class="step" data-x="1375" data-y="255" data-scale="0.05" data-rotate="-90">
+                <h2>Solution 1: lexical alias to |this|</h2>
+<pre><code class="javascript">function Archer() {
+    <em>var self = this;</em>
+    this.arrows = 100;
+
+    setInterval(function shoot() {
+        <em>self</em>.arrows--;
+    }, 5 * 1000);
+}
+
+var a1 = new Archer();</code></pre>
+                <h2>Solution 2: bind the callback function</h2>
+<pre><code class="javascript">function Archer() {
+    this.arrows = 100;
+
+    setInterval(function shoot() {
+        this.arrows--;
+    }.<em>bind(this)</em>, 5 * 1000);
+}
+
+var a1 = new Archer();</code></pre>
+            </div>
+
+            <div class="step" data-x="1410" data-y="255" data-scale="0.05" data-rotate="-90">
+                <h2>New solution: arrow functions</h2>
+<pre><code class="javascript">function Archer() {
+    this.arrows = 100;
+
+    setInterval(<em>() => {</em>
+        this.arrows--;
+    <em>}</em>, 5 * 1000);
+}
+
+var a1 = new Archer();</code></pre>
+                <div>
+                    https://github.com/DavidBruant/ECMAScript-regrets#wrong-this-in-callbacks<br />
+                    based on C# and CoffeeScript<br />
+                    shorter syntax for a function expressions that lexically binds the this value
+                </div>
+            </div>
+
+            <div class="step" data-x="1435" data-y="255" data-scale="0.05" data-rotate="-90">
+            <h2>Syntax: arrow functions</h2>
+<pre><code class="javascript">([param] [, param]) => {
+    statements
+}
+
+param => expression
 </code></pre>
+            </div>
+            <div class="step" data-x="1460" data-y="255" data-scale="0.05" data-rotate="-90">
+            <h2>Examples</h2>
+<pre><code class="javascript">// 1. Basic
+(x, y) => {
+    return x+y
+}
+
+// 2. No return needed (for single expressions)
+(x, y) => x+y
+
+// 3. No parentheses (for one argument)
+x => Math.pow(x, 2);
+
+// 4. Or
+x => {
+    return Math.pow(x, 2);
+}
+
+// 5. No arguments
+() => Math.random()
+
+
+// 6. Compare
+function ListDecorator(items) {
+    this.items = items;
+}
+ListDecorator.prototype.sortedKeys() {
+    var keys = Object.keys(this.items);
+    keys.sort( (key1, key2) => {
+        return this.items[key1] - this.items[key2];
+    } )
+}
+
+var ld = new ListDecorator([200, 123, 200]);
+ld.sortedKeys();</code></pre>
             </div>
 
             <div class="step" data-x="1305" data-y="330" data-scale="0.05" data-rotate="-90">
                 <h1>ES6: Destructuring</h1>
                 <hr />
-<pre><code class="javascript">PLACEHOLDER
-// list matching
-var [a, , b] = [1,2,3];
+                <p>The destructuring assignment syntax is a JavaScript expression that makes it possible to extract data from arrays or objects using a syntax that mirrors the construction of array and object literals.</p>
+            </div>
+            <div class="step" data-x="1345" data-y="330" data-scale="0.05" data-rotate="-90">
+                <h2>Destructuring: List matching.</h2>
+<pre><code class="javascript">
+var [a, b] = [1, 2];
+// a = 1, b = 2
 
-// object matching
+var [a, , b] = [1,2,3];
+// a = 1, b = 3
+
+var [a, b, ...c] = [1, 2, 3, 4, 5];
+// a = 1, b = 2, c = [3, 4, 5]
+
+var [b, a] = [a, b]
+// swaps the content of a and b</code></pre>
+
+            </div>
+            <div class="step" data-x="1365" data-y="330" data-scale="0.05" data-rotate="-90">
+                <h2>Destructuring: Object matching.</h2>
+<pre><code class="javascript">// object matching
 var { op: a, lhs: { op: b }, rhs: c }
        = getASTNode()
 
 // object matching shorthand
 // binds `op`, `lhs` and `rhs` in scope
-var {op, lhs, rhs} = getASTNode()
+var {op, lhs, rhs} = getASTNode()</code></pre>
 
-// Can be used in parameter position
-function g({name: x}) {
+            </div>
+            <div class="step" data-x="1400" data-y="330" data-scale="0.05" data-rotate="-90">
+                <h2>Destructuring: Useable in parameter position.</h2>
+<pre><code class="javascript">function g({name: x}) {
   console.log(x);
 }
-g({name: 5})
+g({name: 5})</code></pre>
 
-// Fail-soft destructuring
+            </div>
+            <div class="step" data-x="1425" data-y="330" data-scale="0.05" data-rotate="-90">
+                <h2>Destructuring: Using defaults.</h2>
+<pre><code class="javascript">// Fail-soft destructuring
 var [a] = [];
 a === undefined;
 
 // Fail-soft destructuring with defaults
 var [a = 1] = [];
-a === 1;
-</code></pre>
+a === 1;</code></pre>
             </div>
 
             <div class="step" data-x="1305" data-y="400" data-scale="0.05" data-rotate="-90">
                 <h1>ES6: Modules</h1>
+                <div>
+                One of the first challenges developers new to JavaScript who are building large applications will have to face is how to go about organizing their code. Most start by embedding hundreds of lines of code between a &lt;script> tag which works but quickly turns into a mess. The difficultly is that JavaScript doesn’t offer any obvious help with organizing our code. Literally where C# has using, Java has import - JavaScript has nothing. This has forced JavaScript authors to experiment with different conventions and to use the language we do have to create practical ways of organizing large JavaScript applications.
+                </div>
+</div>
+            <div class="step" data-x="1335" data-y="400" data-scale="0.05" data-rotate="-90">
+            <h2>Module pattern</h2>
                 <hr />
+<pre><code class="javascript">var MODULE = (function () {
+    var module = {};
+    var privateProperty = 1;
+
+    function privateMethod() {
+        // ...
+    }
+
+    module.publicProperty = 1;
+    module.publicMethod = function () {
+        // ...
+    };
+
+    return module;
+}());</code></pre>
             </div>
 
-            <div class="step" data-x="1305" data-y="480" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1312" data-y="480" data-scale="0.05" data-rotate="-90">
                 <h1>ES6: Symbols</h1>
                 <hr />
+                <p class='blue large'>A new primitive type!</p>
+                <p style='font-size:50px; margin-top:250px'>
+                    <img src='img/thinking-caveman.png' width='140px'/>
+                    Undefined, Null, Boolean, String and Number
+                </p>
             </div>
+
+            <div class="step" data-x="1360" data-y="480" data-scale="0.05" data-rotate="-90">
+                <h2>Symbols: What?</h2>
+                <p>Unique IDs</p>
+
+                <h2>Symbols: Syntax</h2>
+<pre><code class="javascript">Symbol([description])</code></pre>
+            </div>
+
+            <div class="step" data-x="1400" data-y="480" data-scale="0.05" data-rotate="-90">
+                <h2>Unique accessers</h2>
+<pre><code class="javascript">document.getElementById("test")["visited"] = true;
+// Clashes if another library by accident also uses "visited".
+
+var visited_symbol = Symbol("cached");
+document.getElementById("test")[visited_symbol] = true;
+// Will never clash.</code></pre>
+            </div>
+
+
 
             <div class="step" data-x="1305" data-y="555" data-scale="0.05" data-rotate="-90">
                 <h1>ES6: Promises</h1>

@@ -109,7 +109,48 @@ h4 {
   line-height: 100%;
 }
 
+.blue {
+    color: #0095DD;
+}
+.bold {
+    font-weight: bold;
+}
+.center {
+    text-align: center;
+}
+.rotate-180 {
+    -ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
+}
+.flip {
+    -moz-transform: scaleY(-1);
+    -o-transform: scaleY(-1);
+    -webkit-transform: scaleY(-1);
+    transform: scaleY(-1);
+    filter: FlipV;
+    -ms-filter: "FlipV";
+}
 
+.balloon {
+    position: relative;
+    margin-top: 25px;
+}
+.balloon p {
+    text-align: center;
+    position: absolute;
+    font-size: 40px;
+    width: inherit;
+    padding-top: 105px;
+}
+.balloon img {
+    width: inherit;
+}
+em, em * {
+    color: red;
+}
+
+/* slides */
 .step {
     width: 800px;
 }
