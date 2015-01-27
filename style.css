@@ -149,6 +149,9 @@ h4 {
 em, em * {
     color: red;
 }
+.browser {
+    width:75px
+}
 
 /* slides */
 .step {
