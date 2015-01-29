@@ -216,13 +216,13 @@ em, em * {
     padding: 0px;
 }
 
-#es6-list h1, #es6-list h2 {
+.es6-list h1, .es6-list h2 {
     padding: 0px;
 }
-#es6-list ul {
+.es6-list ul {
     margin-left: 100px;
 }
-#es6-list ul li {
+.es6-list ul li {
     margin-top: 75px;
     margin-bottom: 75px;
 }
