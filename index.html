@@ -53,35 +53,55 @@
                 <li><h2>ES6: Arrow functions</h2></li>
                 <li><h2>ES6: Destructuring</h2></li>
                 <li><h2>ES6: Modules</h2></li>
-                <li><h2>ES6: Symbols</h2></li>
+                <!--<li><h2>ES6: Symbols</h2></li>-->
                 <li><h2>ES6: Promises</h2></li>
+                <li><h2>&nbsp;</h2></li>
                 </ul>
 
             </div>
 
-            <div class="step" data-x="1400" data-y="30" data-scale="0.3">
-<p>EcmaScript 6.0 finalisation is for XXXX</p>
-<p>A lot of functionality is already available in different browsers</p>
-<p>Es6 to ES5 compilers: Traceur  or 6to5 + core-js</p>
-<img src='img/traceur.svg' width='50px'>
+            <div class="step" data-x="1400" data-y="-110" data-scale="0.3">
+<p class='middle substep'>June 2015</p>
+<p class='middle substep'>Browsers eagerly implemented stuff</p>
+
+<div class='substep'>
+<p class='middle'><img src='img/traceur.svg' width='50px'> Traceur</p>
+<p class='middle'><img src='img/6to5.svg' width='50px' style='background-color:#F5DA55; padding: 10px;'> 6to5</p>
+</div>
             </div>
 
             <div class="step" data-x="1305" data-y="105" data-scale="0.05" data-rotate="-90">
                 <h1>ES6: Generators</h1>
-                <hr />
+                <hr style='margin-bottom:75px;'/>
 
-                <p>PLACEHOLDER: With ES6 generators, we have a different kind of function,
-                   which may be paused in the middle, one or many times,
-                   and resumed later, allowing other code to run during these
-                   paused periods.</p>
+<p class='middle blue center' style='margin-bottom:50px'>Generate a sequence, one item at a time</p>
 
-                <img src='' height='250px' width='700px'/>
+<div class='substep relative' style='height:275px;'>
+<p class='large'>1 1 2 3 <span class='substep'>5</span> <span class='substep'>8</span></p>
+<img src='img/gnome.png' class='absolute' style='width:150px; top:0px; right:200px;' />
+<div class='absolute large' style='top:20px; right:50px;'>
+<p class='absolute' style='transform: rotate(7deg);left:-20px'>F</p>
+<p class='absolute' style='transform: rotate(17deg);left:-15px'>2</p>
+<p class='absolute' style='transform: rotate(-7deg);left:-28px'>D</p>
+<p class='absolute' style='transform: rotate(12deg);left:10px'>A</p>
+<p class='absolute' style='transform: rotate(50deg);left:30px'>Z</p>
+<p class='absolute' style='transform: rotate(100deg);left:15px'>U</p>
+<p class='absolute' style='transform: rotate(-43deg);top:25px'>C</p>
+<p class='absolute' style='transform: rotate(-80deg);top:-5px'>3</p>
+<p class='absolute' style='transform: rotate(23deg);top:10px'>1</p>
+<p class='absolute' style='transform: rotate(180deg);top:15px'>8</p>
+<p class='absolute' style='transform: rotate(34deg);top:20px'>3</p>
+<p class='absolute' style='transform: rotate(12deg);top:25px;'>9</p>
+<p class='absolute' style='transform: rotate(100deg);top:30px'>1</p>
+</div>
+</div>
 
-                <p>PLACEHOLDER: A generator generates values until no values are available anymore</p>
+
+<p class='substep middle blue center'>More general: Function that can be paused in the middle</p>
 
             </div>
 
-            <div class="step" data-x="1330" data-y="105" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1350" data-y="105" data-scale="0.05" data-rotate="-90">
                 <h2>Syntax</h2>
 
 <div class='substep'>
@@ -101,7 +121,7 @@
 </div>
 
             </div>
-            <div class="step usage" data-x="1350" data-y="105" data-scale="0.05" data-rotate="-90">
+            <div class="step usage" data-x="1380" data-y="105" data-scale="0.05" data-rotate="-90">
             <h2>Usage</h2>
 
 <pre><code class="javascript">function *foo() {
@@ -112,22 +132,14 @@ foo();</code></pre>
 
 <p class='middle blue center substep'>Nothing happens!</p>
 
-            </div>
 
-            <div class="step usage" data-x="1370" data-y="105" data-scale="0.05" data-rotate="-90">
-            <h2>Usage</h2>
+<pre class='substep'><code class="javascript">var generator = foo();</code></pre>
 
-<pre><code class="javascript">function *foo() {
-    console.log("running");
-}
-
-var generator = foo();</code></pre>
-
-<pre><code class="javascript">// generator = { next: function() { ... }, throw: function() { ... }};</code></pre>
+<pre><code class="javascript substep">// generator = { next: function() { ... }, throw: function() { ... }};</code></pre>
 
             </div>
 
-            <div class="step usage" data-x="1400" data-y="105" data-scale="0.05" data-rotate="-90">
+            <div class="step usage" data-x="1420" data-y="105" data-scale="0.05" data-rotate="-90">
             <h2>Usage</h2>
 
 <pre><code class="javascript">function *foo() {
@@ -150,7 +162,7 @@ var result3 = generator.next();</span><span class='substep'>
 // result3 = {value: 3, done: true}</span></code></pre>
             </div>
 
-            <div class="step usage" data-x="1430" data-y="105" data-scale="0.05" data-rotate="-90">
+            <div class="step usage" data-x="1450" data-y="105" data-scale="0.05" data-rotate="-90">
             <h2>Usage</h2>
 
 <pre><code class="javascript">function *foo() {
@@ -171,7 +183,7 @@ var result3 = generator.next(20);</span><span class='substep'>
 // result3 = {value: 30, done: true}</span></code></pre>
             </div>
 
-            <div class="step example" data-x="1470" data-y="105" data-scale="0.05" data-rotate="-90">
+            <div class="step example" data-x="1490" data-y="105" data-scale="0.05" data-rotate="-90">
                 <h3>Example 1: Iteration</h3>
 <pre><code class="javascript">function *range(start, end) {
     while (start != end) {
@@ -201,7 +213,7 @@ var result3 = generator.next(20);</span><span class='substep'>
 </div>
 
             </div>
-            <div class="step example" data-x="1520" data-y="105" data-scale="0.05" data-rotate="-90">
+            <div class="step example" data-x="1540" data-y="105" data-scale="0.05" data-rotate="-90">
                 <h3>Example 2: Fibonacci</h3>
 <pre><code class="javascript">function *fibonacci() {
     var prev = 0, cur = 1;
@@ -215,7 +227,7 @@ var result3 = generator.next(20);</span><span class='substep'>
 
 <div class='substep'>
 <h4>Usage</h4>
-<pre><code class="javascript">for (let n of fibonacci) {
+<pre><code class="javascript">for (let n of fibonacci()) {
     if (n > 1000)
         break;
     console.log(n);
@@ -236,7 +248,7 @@ var result3 = generator.next(20);</span><span class='substep'>
 </div>
             </div>
 
-            <div class="step example" data-x="1550" data-y="105" data-scale="0.05" data-rotate="-90">
+            <div class="step example" data-x="1570" data-y="105" data-scale="0.05" data-rotate="-90">
                 <h3>Generators: compatibility</h3>
                 <table class='compatibility'>
                 <tr class='browser'>
@@ -265,15 +277,27 @@ var result3 = generator.next(20);</span><span class='substep'>
                 <img src="img/extend-in-js.png" />
             </div>
 
-            <div class="step" data-x="1345" data-y="180" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1350" data-y="180" data-scale="0.05" data-rotate="-90">
 
 <h2 class='blue bold center'>Prototype based !!</h2>
-<pre><code class="javascript">function PrototypeClass() {
-    this.property = "";
-    this.method = function() { }
+<pre><code class="javascript">function Animal() {
+    this.cuteness = 0; // neutral
+    this.hunger = 100; // 0: has no hunger, 100: needs food
+    this.approach = function() { } // do nothing
+    // Getters
+    Object.defineProperty(this, "fullness", {
+        get: function() {
+            return 100 - this.hunger;
+        }
+    });
 }
-PrototypeClass.prototype.anotherMethod = function() { }
-var instance = new PrototypeClass();
+Animal.prototype.feed = function(type) {
+    this.hunger--;
+}
+Animal.talk = function(animal1, animal2) {
+    // when animals are same species chitchat else growl
+}
+var unknownSpecies = new Animal();
 </code></pre>
                 <div class='balloon' style='width:450px; position:absolute; left:-100px;'>
                     <p style='padding-top:125px'>Why can't we use classes. I know classes.</p>
@@ -285,7 +309,54 @@ var instance = new PrototypeClass();
                 </div>
             </div>
 
-            <div class="step" data-x="1385" data-y="180" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1395" data-y="180" data-scale="0.05" data-rotate="-90">
+<h2>Syntax</h2>
+<pre><code class="javascript">class Animal() {
+    constructor() {
+        this.cuteness = 0; // neutral
+        this.hunger = 100; // 0: has no hunger, 100: needs food
+    }
+    approach() {
+        // do nothing
+    }
+    get fullness() {
+        return 100 - this.hunger;
+    }
+    feed(type) {
+        this.hunger--;
+    }
+    static talk(animal1, animal2) {
+        // when animals are same species chitchat else growl
+    }
+}
+</code></pre>
+<p class='middle substep blue center'>A minimal class proposal</p>
+
+            </div>
+
+            <div class="step" data-x="1430" data-y="180" data-scale="0.05" data-rotate="-90">
+<h2>Inheritance</h2>
+<pre><code class="javascript">class Cat extends Animal {
+    constructor() {
+        super();
+    }
+    approach() {
+        this.runAway()
+    }
+    feed(type) {
+        if (isDelicious(type))
+            super.feed(type)
+        // Cats are picky even when hungry.
+    }
+}
+</code></pre>
+
+<p class='middle substep blue center'>No multiple inheritance!</p>
+
+            </div>
+
+
+            <!--<div class="step" data-x="1485" data-y="180" data-scale="0.05" data-rotate="-90">
 
 <pre><code class="javascript">PLACEHOLDER
 class SkinnedMesh extends THREE.Mesh {
@@ -304,10 +375,62 @@ class SkinnedMesh extends THREE.Mesh {
   static defaultMatrix() {
     return new THREE.Matrix4();
   }
-}</code></pre>
-            </div>
+}
 
-            <div class="step example" data-x="1450" data-y="180" data-scale="0.05" data-rotate="-90">
+class C extends B {
+  constructor() {
+    super();
+  }
+  method() {
+    super.method();
+  }
+  get x() {
+    return super.x;
+  }
+}
+
+/* ES5 code, without classes */
+var Civilian = function Civilian(name) {
+    this.name = name;
+};
+Civilian.prototype.danger = function () { console.log("Run away!"); };
+
+var SuperHero = function(name, ability) {
+    Civilian.call(this, name); // Call the super class constructor.
+    this.ability = ability;
+};
+SuperHero.prototype = Object.create(Civilian.prototype);
+SuperHero.prototype.constructor = SuperHero;
+SuperHero.prototype.danger = function () { // Override the super class method.
+    console.log("Never fear, " + this.name + " is here!");
+    console.log(this.name + " uses " + this.ability + ". It's super effective.");
+};
+
+/* ES6 code, with classes */
+class Civilian {
+    constructor(name) {
+        this.name = name;
+    }
+    danger() {
+        console.log("Run away!");
+    }
+};
+
+class SuperHero extends Civilian {
+    constructor(name, ability) {
+      super(name); // Call the super class constructor
+        this.ability = ability;
+    }
+    danger() { // Override the super class method
+        console.log("Never fear, " + this.name + " is here!");
+        console.log(this.name + " uses " + this.ability + ". It's super effective.");
+    }
+};
+</code></pre>
+            </div>
+-->
+
+            <div class="step example" data-x="1470" data-y="180" data-scale="0.05" data-rotate="-90">
                 <h3>Classes: compatibility</h3>
                 <table class='compatibility'>
                 <tr class='browser'>
@@ -322,6 +445,14 @@ class SkinnedMesh extends THREE.Mesh {
                 <td>Available in "Technical Preview" using "Experimental Web Platform Features"
                 <td>
                 </table>
+<div class='substep' style='margin-top:150px'>
+<table class='middle'>
+<tr>
+<td style='padding-right:25px'><img src='img/traceur.svg' width='50px' /> Traceur
+<td><img src='img/6to5.svg' width='50px' style='background-color:#F5DA55; padding: 10px;' /> 6to5
+</tr>
+</table>
+</div>
             </div>
 
             <div class="step" data-x="1305" data-y="255" data-scale="0.05" data-rotate="-90">
@@ -329,7 +460,7 @@ class SkinnedMesh extends THREE.Mesh {
                 <hr />
             </div>
 
-            <div class="step" data-x="1330" data-y="255" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1340" data-y="255" data-scale="0.05" data-rotate="-90">
                 <h2>Problem: |this| is dynamic scoped</h2>
 <pre><code class="javascript">function Archer() {
     this.arrows = 100;
@@ -342,7 +473,7 @@ class SkinnedMesh extends THREE.Mesh {
 var a1 = new Archer();</code></pre>
             </div>
 
-            <div class="step" data-x="1375" data-y="255" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1385" data-y="255" data-scale="0.05" data-rotate="-90">
                 <h2>Solution 1: lexical alias to |this|</h2>
 <pre><code class="javascript">function Archer() {
     <em>var self = this;</em>
@@ -366,7 +497,7 @@ var a1 = new Archer();</code></pre>
 var a1 = new Archer();</code></pre>
             </div>
 
-            <div class="step" data-x="1410" data-y="255" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1420" data-y="255" data-scale="0.05" data-rotate="-90">
                 <h2>New solution: arrow functions</h2>
 <pre><code class="javascript">function Archer() {
     this.arrows = 100;
@@ -378,13 +509,14 @@ var a1 = new Archer();</code></pre>
 
 var a1 = new Archer();</code></pre>
                 <div>
-                    https://github.com/DavidBruant/ECMAScript-regrets#wrong-this-in-callbacks<br />
-                    based on C# and CoffeeScript<br />
-                    shorter syntax for a function expressions that lexically binds the this value
+                    <!--https://github.com/DavidBruant/ECMAScript-regrets#wrong-this-in-callbacks<br />-->
+                    <!--based on C# and CoffeeScript<br />-->
+                    <p class='middle center blue substep'>Shorter syntax</p>
+                    <p class='middle center blue substep'>Lexically binds |this|</p>
                 </div>
             </div>
 
-            <div class="step" data-x="1435" data-y="255" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1450" data-y="255" data-scale="0.05" data-rotate="-90">
             <h2>Syntax: arrow functions</h2>
 <pre><code class="javascript">([param] [, param]) => {
     statements
@@ -393,28 +525,28 @@ var a1 = new Archer();</code></pre>
 param => expression
 </code></pre>
             </div>
-            <div class="step" data-x="1460" data-y="255" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1480" data-y="255" data-scale="0.05" data-rotate="-90">
             <h2>Examples</h2>
-<pre><code class="javascript">// 1. Basic
+<pre><code class="javascript substep">// 1. Basic
 (x, y) => {
     return x+y
-}
-
+}</span>
+<span class='substep'>
 // 2. No return needed (for single expressions)
-(x, y) => x+y
-
+(x, y) => x+y</span>
+<span class='substep'>
 // 3. No parentheses (for one argument)
-x => Math.pow(x, 2);
-
+x => Math.pow(x, 2);</span>
+<span class='substep'>
 // 4. Or
 x => {
     return Math.pow(x, 2);
-}
-
+}</span>
+<span class='substep'>
 // 5. No arguments
-() => Math.random()
+() => Math.random()</span>
 
-
+<!--<span class='substep'>
 // 6. Compare
 function ListDecorator(items) {
     this.items = items;
@@ -427,10 +559,10 @@ ListDecorator.prototype.sortedKeys() {
 }
 
 var ld = new ListDecorator([200, 123, 200]);
-ld.sortedKeys();</code></pre>
+ld.sortedKeys();--></span> </code></pre>
             </div>
 
-            <div class="step example" data-x="1505" data-y="255" data-scale="0.05" data-rotate="-90">
+            <div class="step example" data-x="1515" data-y="255" data-scale="0.05" data-rotate="-90">
                 <h3>Arrow functions: compatibility</h3>
                 <table class='compatibility'>
                 <tr class='browser'>
@@ -449,53 +581,65 @@ ld.sortedKeys();</code></pre>
 
             <div class="step" data-x="1305" data-y="330" data-scale="0.05" data-rotate="-90">
                 <h1>ES6: Destructuring</h1>
-                <hr />
-                <p>The destructuring assignment syntax is a JavaScript expression that makes it possible to extract data from arrays or objects using a syntax that mirrors the construction of array and object literals.</p>
+                <hr style='margin-bottom: 150px' />
+
+                <p class='middle center blue'>Assign data from Array or Object to variables</p>
+                <!--<p>The destructuring assignment syntax is a JavaScript expression that makes it possible to extract data from arrays or objects using a syntax that mirrors the construction of array and object literals.</p>-->
             </div>
             <div class="step" data-x="1345" data-y="330" data-scale="0.05" data-rotate="-90">
                 <h2>Destructuring: List matching.</h2>
-<pre><code class="javascript">
-var [a, b] = [1, 2];
-// a = 1, b = 2
-
-var [a, , b] = [1,2,3];
-// a = 1, b = 3
-
+<pre><code class="javascript"><span class='substep'>var [a, b] = [1, 2];
+// a = 1, b = 2</span>
+<span class='substep'>
+var [a, ,b] = [1,2,3];
+// a = 1, b = 3</span>
+<span class='substep'>
 var [a, b, ...c] = [1, 2, 3, 4, 5];
-// a = 1, b = 2, c = [3, 4, 5]
-
+// a = 1, b = 2, c = [3, 4, 5]</span>
+<span class='substep'>
 var [b, a] = [a, b]
-// swaps the content of a and b</code></pre>
+// swaps the content of a and b</span></code></pre>
 
             </div>
-            <div class="step" data-x="1365" data-y="330" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1375" data-y="330" data-scale="0.05" data-rotate="-90">
                 <h2>Destructuring: Object matching.</h2>
-<pre><code class="javascript">// object matching
-var { op: a, lhs: { op: b }, rhs: c }
-       = getASTNode()
-
-// object matching shorthand
-// binds `op`, `lhs` and `rhs` in scope
-var {op, lhs, rhs} = getASTNode()</code></pre>
+<pre><code class="javascript"><span class='substep'>var { data : var1 } = { data : 50 }
+// var1 = 50</span>
+<span class='substep'>
+var { m: month, y: year } = { d: 1, m: 2, y: 2015}
+// month = 2, year = 2015</span>
+<span class='substep'>
+var { child: { data: element  } } = { child : { child: null, data: 1}, data: null }
+// element = 1;</span>
+<span class='substep'>
+var { data : data } = { data : 50 }
+var { data } = { data : 50 }
+// data = 50</span>
+<span class='substep'>
+var { rhs, lhs, data } = { rhs : {}, lhs: {}, data: 50 }
+// rhs = {}, lhs = {}, data = 50</span></code></pre>
 
             </div>
             <div class="step" data-x="1400" data-y="330" data-scale="0.05" data-rotate="-90">
                 <h2>Destructuring: Useable in parameter position.</h2>
-<pre><code class="javascript">function g({name: x}) {
+<pre><code class="javascript">function g(<em>{name: x}</em>) {
   console.log(x);
 }
-g({name: 5})</code></pre>
+g(<em>{name: 5, foo: 0}</em>)
+
+<span class='substep'>// Console: 5</span></code></pre>
 
             </div>
             <div class="step" data-x="1425" data-y="330" data-scale="0.05" data-rotate="-90">
                 <h2>Destructuring: Using defaults.</h2>
-<pre><code class="javascript">// Fail-soft destructuring
+<pre><code class="javascript"><span class='substep'>// Fail-soft destructuring
 var [a] = [];
-a === undefined;
+a === undefined;</span>
 
-// Fail-soft destructuring with defaults
+<span class='substep'>// Fail-soft destructuring with defaults
 var [a = 1] = [];
-a === 1;</code></pre>
+a === 1;</span></code></pre>
+<p class='center blue middle substep'>Not implemented yet!</p>
 
             </div>
             <div class="step example" data-x="1450" data-y="330" data-scale="0.05" data-rotate="-90">
@@ -518,31 +662,68 @@ a === 1;</code></pre>
 
             <div class="step" data-x="1305" data-y="400" data-scale="0.05" data-rotate="-90">
                 <h1>ES6: Modules</h1>
-                <div>
+
+
+<p class='middle'>Fix dependencies of Libraries</h2>
+
+<p class='middle'>Just make sure you put the SCRIPT not scalable</p>
+
+<p class='middle'>CommonJS Modules:</h2>
+<p>Asynchronous Module Definition (AMD)</h2>
+
+                <!-- <div>
                 One of the first challenges developers new to JavaScript who are building large applications will have to face is how to go about organizing their code. Most start by embedding hundreds of lines of code between a &lt;script> tag which works but quickly turns into a mess. The difficultly is that JavaScript doesn’t offer any obvious help with organizing our code. Literally where C# has using, Java has import - JavaScript has nothing. This has forced JavaScript authors to experiment with different conventions and to use the language we do have to create practical ways of organizing large JavaScript applications.
-                </div>
+                </div>-->
 </div>
-            <div class="step" data-x="1335" data-y="400" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1355" data-y="400" data-scale="0.05" data-rotate="-90">
             <h2>Module pattern</h2>
                 <hr />
-<pre><code class="javascript">var MODULE = (function () {
-    var module = {};
-    var privateProperty = 1;
+<pre><code class="javascript">/* ------ lib.js ------ */
+<span class='substep'>var privateProperty = 1;</span>
+<span class='substep'>export var publicProperty = 2</span>
 
-    function privateMethod() {
-        // ...
-    }
+<span class='substep'>function privateFunction() {
+    // ...
+}</span>
+<span class='substep'>export function publicFunction() {
+    // ...
+}</span>
 
-    module.publicProperty = 1;
-    module.publicMethod = function () {
-        // ...
-    };
+<span class='substep'>export default function () {
+    // ...
+}</span>
 
-    return module;
-}());</code></pre>
+/* ------ main.js ------ */
+<span class='substep'>import { publicProperty, publicFunction } from 'lib';
+// publicProperty = 2, publicFunction = function () { /* ... */ }</span>
+
+<span class='substep'>import { publicFunction as libfunc } from 'lib';
+// libfunc = function() { /* ... */ }</span>
+
+<span class='substep'>import { default as foo } from 'lib';
+import foo from 'lib';
+// foo now contains the default function</span>
+
+<span class='substep'>import * as mylib from 'lib';
+// mylib = { publicProperty: 2, publicFunction: function() {}}</span>
+</code></pre>
             </div>
 
-            <div class="step example" data-x="1350" data-y="400" data-scale="0.05" data-rotate="-90">
+            <div class="step example" data-x="1395" data-y="400" data-scale="0.05" data-rotate="-90">
+                <h2 style='margin-bottom:100px;'>Module loader</h2>
+
+<div class='substep'>
+<pre><code class="javascript" style='margin-bottom:50px'>System.import('some_module')
+// Returns a promise? that loads the module async</code></pre>
+                <p class='center middle blue' style='margin-bottom:100px'>To be determined</p>
+</div>
+
+                <p class='middle substep'>Make it possible to load libraries sync and async</p>
+
+
+            </div>
+
+    <!--    <div class="step example" data-x="1435" data-y="400" data-scale="0.05" data-rotate="-90">
                 <h3>Modules: compatibility</h3>
                 <table class='compatibility'>
                 <tr class='browser'>
@@ -601,29 +782,31 @@ document.getElementById("test")[visited_symbol] = true;
                 <td>Releases this month
                 <td>Released 4 months ago
                 <td>Available in "Technical Preview" using "Experimental Web Platform Features"
-                <td>Released 4 months ago<!-- October 15, 2014 -->
+                <td>Released 4 months ago
                 <td>
                 </table>
             </div>
-
-            <div class="step" data-x="1305" data-y="555" data-scale="0.05" data-rotate="-90">
+-->
+            <div class="step" data-x="1305" data-y="480" data-scale="0.05" data-rotate="-90">
                 <h1>ES6: Promises</h1>
-                <p>Abstraction for Async code</p>
-                <hr />
+                <hr style='margin-bottom:200px;' />
+                <p class='center blue middle'>Abstraction for Async code</p>
             </div>
 
-            <div class="step" data-x="1345" data-y="555" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1345" data-y="480" data-scale="0.05" data-rotate="-90">
                 <h2>Problem</h2>
-                <p>JS executes sequentially and blocks all other execution</p>
+                <p class='lessmiddle'>JS executes sequentially and blocks all other execution</p>
 
-<p class='middle blue center'>Easiest to reason about</p>
+<p class='middle blue center substep'>Easiest to reason about</p>
 
-<pre class='substep'><code class="javascript">while (true) {
+<pre class='substep' style='margin-bottom:50px;'><code class="javascript">while (true) {
     // Crunch some data.
 }</code></pre>
 
 
-            <img src='img/slowscript.gif' class='center substep' />
+            <div class='center substep' style='margin-bottom:50px'>
+            <img src='img/slowscript.gif' />
+            </div>
 
 <pre class='substep'><code class="javascript">// Make sure first image is loaded
 var img = document.getElementsByTagName("img")[0]
@@ -634,26 +817,28 @@ while (!img.complete) {
 
             </div>
 
-            <div class="step" data-x="1375" data-y="555" data-scale="0.05" data-rotate="-90">
-                So we need async behaviour. To give time to other resources.
+            <div class="step" data-x="1395" data-y="480" data-scale="0.05" data-rotate="-90">
+                <p class='lessmiddle'>So we need async behaviour.</p>
 
-<p class='middle blue center'>Enter events and continuation functions</p>
+<p class='middle blue center substep'>Enter events and continuation functions</p>
 
 <pre class='substep'><code class="javascript">// Make sure first image is loaded
 var img = document.getElementsByTagName("img")[0]
 img.onload = function() {
     // Completed, now we can do something with it.
 }</code></pre>
+<div class='substep'>
 <p class='middle blue center'>What if img was already loaded?</p>
 <p class='center'>Just add some more code. DUH!</p>
+</div>
 <pre class='substep'><code class="javascript">if (img.completed) {
     img.onload();// Make sure first image is loaded
 }</code></pre>
 
-Notice the small annoyincies. More code. Need to look up onload and find completed.
+<!--Notice the small annoyincies. More code. Need to look up onload and find completed.-->
             </div>
 
-            <div class="step" data-x="1400" data-y="555" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1440" data-y="480" data-scale="0.05" data-rotate="-90">
                 <h2>Promises</h2>
                 <p>the idea is to make this simpler with promises and have some nice tools around it.</p>
 
@@ -679,7 +864,9 @@ promise.then(function() {
 </code></pre>
 
            </div>
-           <div class="step" data-x="1430" data-y="555" data-scale="0.05" data-rotate="-90">
+           <div class="step" data-x="1480" data-y="480" data-scale="0.05" data-rotate="-90">
+
+            <h2>Image loaded example</h2>
 
 <pre><code class="javascript">var img = document.getElementsByTagName("img")[0]
 ready = img.getReadyPromise() // imagine this exists.
@@ -690,20 +877,20 @@ ready.then(function() {
             </div>
 
 
-            <div class="step" data-x="1450" data-y="555" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1510" data-y="480" data-scale="0.05" data-rotate="-90">
             <h2>Promise Example: Chaining</h2>
 
 <pre><code class="javascript">var imgs = document.getElementsByTagName("img")
 ready = imgs[0].getReadyPromise() // imagine this exists.
 ready.then(function() {
-    return imgs[1].getReadyPromise();
+    <em>return imgs[1].getReadyPromise(); // return promise.</em>
 }).then(function() {
     // both images are loaded.
 });</code></pre>
 
             </div>
 
-            <div class="step" data-x="1470" data-y="555" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1550" data-y="480" data-scale="0.05" data-rotate="-90">
             <h2>Promise Example: Parallel testing of multiple promises</h2>
 
 <pre><code class="javascript">var imgs = document.getElementsByTagName("img")
@@ -713,7 +900,7 @@ Promise.all(promises).then(function() {
 })</code></pre>
 
             </div>
-            <div class="step example" data-x="1490" data-y="555" data-scale="0.05" data-rotate="-90">
+            <div class="step example" data-x="1590" data-y="480" data-scale="0.05" data-rotate="-90">
                 <h3>Promises: Compatibility</h3>
                 <table class='compatibility'>
                 <tr class='browser'>
