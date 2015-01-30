@@ -1013,14 +1013,14 @@ Promise.all(promises).then(function() {
             <div class="step" data-x="1780" data-y="300" data-scale="0.05" data-rotate="-90">
             <h2>Features of typed objects</h2>
             <pre><code class="javascript">
-            // Typed objects aren't extensible
+            // You can't add attributes to Typed objects instances
             var p = new Pixel();
             p.id = "let's sneak in a string, i'm sure the VM won't see it";
             // TypeError: Pixel is not extensible
             </code></pre>
 
             <pre class="substep"><code class="javascript">
-            // Typed objects are objects
+            // Typed objects are objects (!)
             typeof p2; // "object"
 
             var p2 = new Pixel();
@@ -1040,7 +1040,7 @@ Promise.all(promises).then(function() {
             </ul>
             </div>
 
-            <div class="step" data-x="1820" data-y="300" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1840" data-y="300" data-scale="0.05" data-rotate="-90">
             <h2>Can we remove boxing of plain JS objects?</h2>
             <p>
             If we can prove an object has a stable shape ("hidden class")
@@ -1089,12 +1089,29 @@ Promise.all(promises).then(function() {
             <div class="step" data-x="1740" data-y="370" data-scale="0.05" data-rotate="-90">
                 <h2>The SIMD.js model</h2>
                 <p>Fixed-length: 128 bits (much useful, well supported, very SIMD, wow).</p>
-                <p>Uniform behaviours of operation accross platforms...</p>
-                <p class="substep">... but most of operations map to a single
-                assembly instruction.</p>
+                <p>Uniform behaviours of operation accross platforms.</p>
+                <p>New value types: int8x16, int16x8, int32x4, float32x4,
+                float64x2.</p>
+                <p>These can be embedded in Typed Objects descriptors.</p>
             </div>
 
-            <div class="step" data-x="1740" data-y="370" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1760" data-y="370" data-scale="0.05" data-rotate="-90">
+                <h2>Available operations</h2>
+                <ul>
+                    <li>- Basic arithmetic (add, sub, mul, div, abs, sqrt, min/max, etc.).</li>
+                    <li>- Comparisons (lessThan{,OrEqual}, greaterThan{,OrEqual}, equal, notEqual</li>
+                    <li>- Conversions and bitcasts (e.g., float32x4.fromInt32x4,
+                    float32x4.fromInt32x4Bits, etc.)</li>
+                    <li>- Bitwise operations (or, and, xor, not,
+                    shiftLeftByScalar, shiftRightLogicalByScalar,
+                    shiftRightLogicalByScalar, etc.)</li>
+                    <li>- Manipulate data (lane accessors and setters,
+                    select, bitselect, shuffles, partial or full loads and stores within typed
+                    arrays)</li>
+                </ul>
+            </div>
+
+            <div class="step" data-x="1780" data-y="370" data-scale="0.05" data-rotate="-90">
                 <h2>can haz code? okthxbye</h2>
                 <pre><code class="javascript">
                 function fibonacci4(n) {
@@ -1115,7 +1132,7 @@ Promise.all(promises).then(function() {
                 </code></pre>
             </div>
 
-            <div class="step" data-x="1770" data-y="370" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1810" data-y="370" data-scale="0.05" data-rotate="-90">
                 <h2>another example</h2>
                 <pre><code class="javascript">
                 var x = SIMD.float32x4(1, 2, 3, 4);
@@ -1134,7 +1151,7 @@ Promise.all(promises).then(function() {
                     let v = SIMD.float32x4.sub(x, previous); // subtract
                     v = SIMD.float32x4.abs(v); // absolute
 
-                    let cmp = SIMD.float32x4.lessThanOrEqual(v, threshold); // <
+                    let cmp = SIMD.float32x4.lessThanOrEqual(v, threshold); // <=
                     if (cmp.signMask == 0b1111) // true in all lanes
                         break;
                 };
