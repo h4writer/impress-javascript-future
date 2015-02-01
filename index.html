@@ -38,14 +38,26 @@
                     </div>
                     <div class='blue middle substep absolute' style='text-decoration:underline; right:-300px; top:600px'>h4writer.com</div>
                 </div>
-
             </div>
 
             <div class="step" data-x="600" data-y="450" data-scale="0.3">
-                ...
+                <div style='position:relative; height:500px;'>
+                    <img src='img/lyon.jpg' class='substep' style='position:absolute;top:50px; right:0px; width:800px;'/>
+                    <div class='substep' style='position:absolute;top:100px;right:50px'>
+                        <img src='img/firefox.png' style='width:100px;' />
+                    </div>
+                    <div class='substep'
+                        style='position:absolute;top:150px;left:200px'>
+                        <img src='img/asmjsinside.png' style='width:400px;' />
+                    </div>
+                    <div class='substep'
+                        style='position:absolute;top:150px;left:200px'>
+                        *not an official logo (credits to Steven Wittens)
+                    </div>
+                </div>
             </div>
 
-            <div id='es6-list' class="step" data-x="1500" data-y="280" data-scale="0.7">
+            <div class="es6-list step" data-x="1500" data-y="280" data-scale="0.7">
                 <h1>EcmaScript 6.0</h1>
 
                 <ul>
@@ -919,6 +931,230 @@ Promise.all(promises).then(function() {
                 </table>
             </div>
 
+
+            <div class="es6-list step" data-x="1900" data-y="280" data-scale="0.7">
+                <h1>The Future</h1>
+                <ul>
+                    <li><h2>Typed Objects</h2></li>
+                    <li><h2>SIMD.js</h2></li>
+                </ul>
+            </div>
+
+            <div class="step" data-x="1810" data-y="210" data-scale="0.3">
+                <p>Might be present in ES7, or even later.</p>
+                <p>Very experimental features (implemented in Nightly).</p>
+                <p>Instable APIs.</p>
+                <p class="substep">Use at your own risks!</p>
+            </div>
+
+            <div class="step" data-x="1700" data-y="300" data-scale="0.05" data-rotate="-90">
+                <h1>Typed Objects</h1>
+                <hr />
+                <p>Add a way to describe data structures which members have
+                defined types.</p>
+                <p class="substep">Types among {u,}int{8,16,32,64} / float{32,64} / String /
+                Object, etc..</p>
+            </div>
+
+            <div class="step" data-x="1720" data-y="300" data-scale="0.05" data-rotate="-90">
+            <h2>Create your own structs!</h2>
+            <pre><code class="javascript">
+            var {StructType, ArrayType} = TypedObject;
+            // Create a simple type
+            var Pixel = new StructType({'r': uint8, 'g': uint8, 'b': uint8});
+            </code></pre>
+
+            <pre class="substep"><code class="javascript">
+            // Create an array type
+            var Square = new ArrayType(Pixel, 4);
+            </code></pre>
+
+            <pre class="substep"><code class="javascript">
+            // Compose types!
+            var Image = new StructType({'id': uint16, 'src': Square});
+            </code></pre>
+            </div>
+
+            <div class="step" data-x="1750" data-y="300" data-scale="0.05" data-rotate="-90">
+            <h2>Create your own typed objects!</h2>
+            <pre><code class="javascript">
+            var p = new Pixel({r: 128, g: 42, b: 25});
+            p.g; // shows 42
+            </code></pre>
+
+            <pre class="substep"><code class="javascript">
+            // Omit a field in the constructor to give it a default value
+            var p2 = new Pixel({r: 128, b: 56});
+            p2.g; // shows 0
+            </code></pre>
+
+            <pre class="substep"><code class="javascript">
+            // Arguments are coerced to fit the specified type
+            var p3 = new Pixel({r: 128, g: 35, b: 1337});
+            p2.b; // shows 57
+            </code></pre>
+
+            <pre class="substep"><code class="javascript">
+            // Let's instantiate an ArrayType
+            var sq = new Square([
+                {r: 24, g: 35, b: 46},
+                {r: 52, g: 63, b: 74},
+                p,
+                p2
+            ]);
+            </code></pre></div>
+
+            <div class="step" data-x="1780" data-y="300" data-scale="0.05" data-rotate="-90">
+            <h2>Features of typed objects</h2>
+            <pre><code class="javascript">
+            // You can't add attributes to Typed objects instances
+            var p = new Pixel();
+            p.id = "let's sneak in a string, i'm sure the VM won't see it";
+            // TypeError: Pixel is not extensible
+            </code></pre>
+
+            <pre class="substep"><code class="javascript">
+            // Typed objects are objects (!)
+            typeof p2; // "object"
+
+            var p2 = new Pixel();
+            p == p2; // false
+            p === p2; // false
+            </code></pre></div>
+
+            <div class="step" data-x="1800" data-y="300" data-scale="0.05" data-rotate="-90">
+            <h2>5 Reasons To Love Typed Objects; #5 Is My Favourite</h2>
+            <ul>
+                <li class="substep">No boxing processing overhead.</li>
+                <li class="substep">Better memory layout.</li>
+                <li class="substep">No deoptimizations due to shapes changing.</li>
+                <li class="substep">Predictable performance.</li>
+                <li class="substep">... and it can inspire optimizations in
+                your VM today!</li>
+            </ul>
+            </div>
+
+            <div class="step" data-x="1840" data-y="300" data-scale="0.05" data-rotate="-90">
+            <h2>Can we remove boxing of plain JS objects?</h2>
+            <p>
+            If we can prove an object has a stable shape ("hidden class")
+            and we know its definite properties, we can handle it as a Typed
+            Object.
+            </p>
+
+            <pre class="substep"><code class="javascript">
+            function PixelFactory(r, g, b) {
+                this.r = r | 0; // Forces int32 coercion
+                this.g = g | 0;
+                this.b = b | 0;
+            }
+            </code></pre>
+
+            <pre class="substep"><code class="javascript">
+            var Pixel = new StructType({r: int32, g: int32, b: int32});
+            // What if we handle an object created from the PixelFactory as a
+            // Typed Object with the Pixel type?
+            </code></pre>
+
+            <p><h3 class="substep"><a
+                    href="https://bugzilla.mozilla.org/show_bug.cgi?id=1106828">Firefox: Bug 1106828</a></h3></p>
+
+            </div>
+
+            <div class="step" data-x="1700" data-y="370" data-scale="0.05" data-rotate="-90">
+                <h1>SIMD.js</h1>
+                <hr />
+                <p>Use vector operations directly in JavaScript and have
+                these jitted as vector processor instructions.</p>
+            </div>
+
+            <div class="step" data-x="1720" data-y="370" data-scale="0.05" data-rotate="-90">
+                <h2>Single Instruction, Multiple Data</h2>
+                <p><img src="img/simd.jpg" /></p>
+                <p>A normal operation takes two input operands.</p>
+                <p>A SIMD operation operates on pairs of input operands.</p>
+                <p>Implementations of SIMD: SSE (x86), NEON (arm)</p>
+                <p>This is fast! Mostly used in heavily parallel processing (audio / image processing,
+                codecs, games...).</p>
+            </div>
+
+            <div class="step" data-x="1740" data-y="370" data-scale="0.05" data-rotate="-90">
+                <h2>The SIMD.js model</h2>
+                <p>Fixed-length: 128 bits (much useful, well supported, very SIMD, wow).</p>
+                <p>Uniform behaviours of operation accross platforms.</p>
+                <p>New value types: int8x16, int16x8, int32x4, float32x4,
+                float64x2.</p>
+                <p>These can be embedded in Typed Objects descriptors.</p>
+            </div>
+
+            <div class="step" data-x="1760" data-y="370" data-scale="0.05" data-rotate="-90">
+                <h2>Available operations</h2>
+                <ul>
+                    <li>- Basic arithmetic (add, sub, mul, div, abs, sqrt, min/max, etc.).</li>
+                    <li>- Comparisons (lessThan{,OrEqual}, greaterThan{,OrEqual}, equal, notEqual</li>
+                    <li>- Conversions and bitcasts (e.g., float32x4.fromInt32x4,
+                    float32x4.fromInt32x4Bits, etc.)</li>
+                    <li>- Bitwise operations (or, and, xor, not,
+                    shiftLeftByScalar, shiftRightLogicalByScalar,
+                    shiftRightLogicalByScalar, etc.)</li>
+                    <li>- Manipulate data (lane accessors and setters,
+                    select, bitselect, shuffles, partial or full loads and stores within typed
+                    arrays)</li>
+                </ul>
+            </div>
+
+            <div class="step" data-x="1780" data-y="370" data-scale="0.05" data-rotate="-90">
+                <h2>can haz code? okthxbye</h2>
+                <pre><code class="javascript">
+                function fibonacci4(n) {
+                    var x = SIMD.int32x4(1, 1, 2, 3);
+                    var y = SIMD.int32x4(1, 2, 3, 5);
+
+                    while (n--) {
+                        var tmp = y;
+                        y = SIMD.int32x4.add(x, y);
+                        x = tmp;
+                    }
+
+                    return x;
+                }
+
+                var v = fibonacci4(10);
+                console.log(v.x, v.y, v.z, v.w); // (89, 144, 233, 377)
+                </code></pre>
+            </div>
+
+            <div class="step" data-x="1810" data-y="370" data-scale="0.05" data-rotate="-90">
+                <h2>another example</h2>
+                <pre><code class="javascript">
+                var x = SIMD.float32x4(1, 2, 3, 4);
+                var y = SIMD.float32x4(1, 2, 3, 4);
+
+                var previous = SIMD.float32x4.splat(0); // copies the value in all four lanes
+
+                var threshold = SIMD.float32x4.splat(.001337);
+
+                while (true) {
+                    previous = x;
+
+                    x = SIMD.float32x4.add(x, y);
+                    x = SIMD.float32x4.sqrt(x); // square root
+
+                    let v = SIMD.float32x4.sub(x, previous); // subtract
+                    v = SIMD.float32x4.abs(v); // absolute
+
+                    let cmp = SIMD.float32x4.lessThanOrEqual(v, threshold); // <=
+                    if (cmp.signMask == 0b1111) // true in all lanes
+                        break;
+                };
+
+                console.log(x.x, x.y, x.z, x.w);
+                </code></pre>
+            </div>
+
+            <div class="step" data-x="1850" data-y="370" data-scale="0.05" data-rotate="-90">
+                <h1>Thank you!</h1>
+            </div>
 
             <div id="overview" class="step" data-x="1000" data-y="100" data-scale="1.5">
             </div>
