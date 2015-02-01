@@ -293,7 +293,7 @@ var result3 = generator.next(20);</span><span class='substep'>
             <div class="step" data-x="1350" data-y="180" data-scale="0.05" data-rotate="-90">
 
 <h2 class='blue bold center'>Prototype based !!</h2>
-<pre><code class="javascript">function Animal() {
+<pre><code class="javascript" style='font-size:1.0rem !important'>function Animal() {
     this.cuteness = 0; // neutral
     this.hunger = 100; // 0: has no hunger, 100: needs food
     this.approach = function() { } // do nothing
@@ -312,8 +312,8 @@ Animal.talk = function(animal1, animal2) {
 }
 var unknownSpecies = new Animal();
 </code></pre>
-                <div class='balloon' style='width:450px; position:absolute; left:-100px;'>
-                    <p style='padding-top:125px'>Why can't we use classes. I know classes.</p>
+                <div class='balloon' style='width:400px; position:absolute; left:-100px;'>
+                    <p style='padding-top:110px'>Why can't we use classes. I know classes.</p>
                     <img src="img/balloon.png" class='flip'/>
                 </div>
                 <div class='balloon' style='width:300px; position:relative; left:550px;'>
@@ -679,10 +679,10 @@ a === 1;</span></code></pre>
 
 <p class='middle substep'>Fix dependencies of Libraries</h2>
 
-<p class='middle substep'>Just make sure you put the SCRIPT not scalable</p>
+<p class='middle substep'>Using the 'script'-tag is not scalable</p>
 
-<p class='middle substep'>CommonJS Modules:</h2>
-<p class='middle substep'>Asynchronous Module Definition (AMD)</h2>
+<p class='middle substep'>CommonJS Modules<br />
+Asynchronous Module Definition (AMD)</h2>
 
                 <!-- <div>
                 One of the first challenges developers new to JavaScript who are building large applications will have to face is how to go about organizing their code. Most start by embedding hundreds of lines of code between a &lt;script> tag which works but quickly turns into a mess. The difficultly is that JavaScript doesn’t offer any obvious help with organizing our code. Literally where C# has using, Java has import - JavaScript has nothing. This has forced JavaScript authors to experiment with different conventions and to use the language we do have to create practical ways of organizing large JavaScript applications.
@@ -695,16 +695,10 @@ a === 1;</span></code></pre>
 <span class='substep'>var privateProperty = 1;</span>
 <span class='substep'>export var publicProperty = 2</span>
 
-<span class='substep'>function privateFunction() {
-    // ...
-}</span>
-<span class='substep'>export function publicFunction() {
-    // ...
-}</span>
+<span class='substep'>function privateFunction() { /* ... */ }</span>
+<span class='substep'>export function publicFunction() { /* ... */ }</span>
 
-<span class='substep'>export default function () {
-    // ...
-}</span>
+<span class='substep'>export default function () { /*  */ }</span>
 
 /* ------ main.js ------ */
 <span class='substep'>import { publicProperty, publicFunction } from 'lib';
@@ -718,7 +712,7 @@ import foo from 'lib';
 // foo now contains the default function</span>
 
 <span class='substep'>import * as mylib from 'lib';
-// mylib = { publicProperty: 2, publicFunction: function() {}}</span>
+// mylib = { publicProperty: 2, publicFunction: function() { /* ... */}}</span>
 </code></pre>
             </div>
 
@@ -904,7 +898,7 @@ ready.then(function() {
             </div>
 
             <div class="step" data-x="1550" data-y="480" data-scale="0.05" data-rotate="-90">
-            <h2>Promise Example: Parallel testing of multiple promises</h2>
+            <h2>Example: Parallel testing of multiple promises</h2>
 
 <pre><code class="javascript">var imgs = document.getElementsByTagName("img")
 var promises = [ imgs[0].getReadyPromise(), imgs[1].getReadyPromise() ]
@@ -940,11 +934,13 @@ Promise.all(promises).then(function() {
                 </ul>
             </div>
 
-            <div class="step" data-x="1810" data-y="210" data-scale="0.3">
+            <div class="step" data-x="1740" data-y="210" data-scale="0.3">
+            <div style='margin-left:250px'>
                 <p>Might be present in ES7, or even later.</p>
                 <p>Very experimental features (implemented in Nightly).</p>
                 <p>Instable APIs.</p>
                 <p class="substep">Use at your own risks!</p>
+            </div>
             </div>
 
             <div class="step" data-x="1700" data-y="300" data-scale="0.05" data-rotate="-90">
@@ -975,7 +971,7 @@ Promise.all(promises).then(function() {
             </code></pre>
             </div>
 
-            <div class="step" data-x="1750" data-y="300" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1755" data-y="300" data-scale="0.05" data-rotate="-90">
             <h2>Create your own typed objects!</h2>
             <pre><code class="javascript">
             var p = new Pixel({r: 128, g: 42, b: 25});
@@ -1004,7 +1000,7 @@ Promise.all(promises).then(function() {
             ]);
             </code></pre></div>
 
-            <div class="step" data-x="1780" data-y="300" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1790" data-y="300" data-scale="0.05" data-rotate="-90">
             <h2>Features of typed objects</h2>
             <pre><code class="javascript">
             // You can't add attributes to Typed objects instances
@@ -1022,7 +1018,7 @@ Promise.all(promises).then(function() {
             p === p2; // false
             </code></pre></div>
 
-            <div class="step" data-x="1800" data-y="300" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1815" data-y="300" data-scale="0.05" data-rotate="-90">
             <h2>5 Reasons To Love Typed Objects; #5 Is My Favourite</h2>
             <ul>
                 <li class="substep">No boxing processing overhead.</li>
@@ -1034,7 +1030,7 @@ Promise.all(promises).then(function() {
             </ul>
             </div>
 
-            <div class="step" data-x="1840" data-y="300" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1850" data-y="300" data-scale="0.05" data-rotate="-90">
             <h2>Can we remove boxing of plain JS objects?</h2>
             <p>
             If we can prove an object has a stable shape ("hidden class")
@@ -1068,7 +1064,7 @@ Promise.all(promises).then(function() {
                 these jitted as vector processor instructions.</p>
             </div>
 
-            <div class="step" data-x="1720" data-y="370" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1725" data-y="370" data-scale="0.05" data-rotate="-90">
                 <h2>Single Instruction, Multiple Data</h2>
                 <p><img src="img/simd.jpg" /></p>
                 <p>A normal operation takes two input operands.</p>
@@ -1078,7 +1074,7 @@ Promise.all(promises).then(function() {
                 codecs, games...).</p>
             </div>
 
-            <div class="step" data-x="1740" data-y="370" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1750" data-y="370" data-scale="0.05" data-rotate="-90">
                 <h2>The SIMD.js model</h2>
                 <p>Fixed-length: 128 bits (much useful, well supported, very SIMD, wow).</p>
                 <p>Uniform behaviours of operation accross platforms.</p>
@@ -1087,7 +1083,7 @@ Promise.all(promises).then(function() {
                 <p>These can be embedded in Typed Objects descriptors.</p>
             </div>
 
-            <div class="step" data-x="1760" data-y="370" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1775" data-y="370" data-scale="0.05" data-rotate="-90">
                 <h2>Available operations</h2>
                 <ul>
                     <li>- Basic arithmetic (add, sub, mul, div, abs, sqrt, min/max, etc.).</li>
@@ -1103,7 +1099,7 @@ Promise.all(promises).then(function() {
                 </ul>
             </div>
 
-            <div class="step" data-x="1780" data-y="370" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1810" data-y="370" data-scale="0.05" data-rotate="-90">
                 <h2>can haz code? okthxbye</h2>
                 <pre><code class="javascript">
                 function fibonacci4(n) {
@@ -1124,8 +1120,8 @@ Promise.all(promises).then(function() {
                 </code></pre>
             </div>
 
-            <div class="step" data-x="1810" data-y="370" data-scale="0.05" data-rotate="-90">
-                <h2>another example</h2>
+            <div class="step" data-x="1850" data-y="370" data-scale="0.05" data-rotate="-90">
+                <h2>Another example</h2>
                 <pre><code class="javascript">
                 var x = SIMD.float32x4(1, 2, 3, 4);
                 var y = SIMD.float32x4(1, 2, 3, 4);
@@ -1152,7 +1148,7 @@ Promise.all(promises).then(function() {
                 </code></pre>
             </div>
 
-            <div class="step" data-x="1850" data-y="370" data-scale="0.05" data-rotate="-90">
+            <div class="step" data-x="1890" data-y="370" data-scale="0.05" data-rotate="-90">
                 <h1>Thank you!</h1>
             </div>
 
